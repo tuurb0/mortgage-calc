@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  
+  --spinnerLineContainerHeight: 32px;
+  --spinnerLineHeight: 2px;
+  --spinnerLineActiveHeight: 6px;
+  
+  --circleSize: 24px;
+  --circlePosition: 60%;
+}
+
+.spinner-line {
+  width: 500px;
+  height: calc(var(--spinnerLineContainerHeight));
+  
+  border: solid 1px gray;
+}
+
+.spinner-line__hr {
+  display: block;
+  position: relative;
+  z-index: 1;
+  top: calc((var(--spinnerLineContainerHeight) / 2) - (var(--spinnerLineHeight) / 2) - var(--spinnerLineActiveHeight) - var(--circleSize));
+  
+  height: var(--spinnerLineHeight);  
+
+  border: none;
+  background: gray;
+}
+
+.spinner-line__active-hr {
+  display: block;
+  position: relative;
+  z-index: 2;
+  top: calc((var(--spinnerLineContainerHeight) / 2) - (var(--spinnerLineActiveHeight) / 2) - var(--circleSize));
+  
+  height: var(--spinnerLineActiveHeight);
+  width: var(--circlePosition);  
+
+  border: none;
+  border-radius: 2px;
+  background: #00417a;
+}
+
+.spinner-line__circle {
+  display: block;
+  position: relative;
+  z-index: 3;
+  top: calc((var(--spinnerLineContainerHeight) / 2) - (var(--circleSize) / 2));
+  left: calc(var(--circlePosition) - (var(--circleSize) / 2));
+  
+  height: var(--circleSize);
+  width: var(--circleSize);
+  
+  background: url("circle.png") no-repeat;
+  background-size: 100%;
+}
