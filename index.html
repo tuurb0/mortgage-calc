@@ -2,19 +2,87 @@
 <html>
   
   <head>
+    <meta charset="utf-8">
     <link href="style.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet">
   </head>
   
   <body>
+
+
+    <div class="calculator">
+
+      <div class="slider" id="1" percent="30">
+
+
+        <div class="slider-line">
+
+          <div class = "slider-line__title">ТЕСТ 1</div>
+
+          <div class = "slider-line__line">
+
+            <div class="slider-line__circle"></div>
+            <hr class="slider-line__active-hr" noshade />
+            <hr class="slider-line__hr" noshade />
+
+          </div>
+
+          <div class="slider-line__markup">
+
+            <p class="slider-markup__p">0%</p>
+            <p class="slider-markup__p">100%</p>
+
+          </div>
+        </div>
+        
+
+        <div class="slider-value">
+
+          <input class="slider-value__input" type="text" />
+
+        </div>
+
+      </div>
+
+
+      <div class="slider" id="2" percent="70">
+
+
+        <div class="slider-line">
+
+          <div class = "slider-line__title">ТЕСТ 2</div>
+
+          <div class = "slider-line__line">
+
+            <div class="slider-line__circle"></div>
+            <hr class="slider-line__active-hr" noshade />
+            <hr class="slider-line__hr" noshade />
+
+          </div>
+
+          <div class="slider-line__markup">
+
+            <p class="slider-markup__p">0%</p>
+            <p class="slider-markup__p">100%</p>
+
+          </div>
+        </div>
+        
+
+        <div class="slider-value">
+
+          <input class="slider-value__input" type="text" />
+
+        </div>
+
+      </div>
+
+
     <script src="calc.js"></script>
-    
-    
-    <div class="spinner-line" id="line1">
-      <div class="spinner-line__circle"></div>
-      
-      <hr class="spinner-line__active-hr" noshade />
-      <hr class="spinner-line__hr" noshade />
-      
-    </div>
+
+
   </body>
 </html>
