@@ -2,34 +2,42 @@ let sliders = Array.prototype.filter.call(document.getElementsByClassName('slide
     return slider.nodeName;
 });
 
-//find all sliders
+//load all sliders
 sliders.forEach(el => __slider(el));
 
 //create sliders
 function __slider(el) {
 
-	let slider_params = {
-		percent: document.getElementById(el.id).getAttribute('value'),
-		value: document.getElementById(el.id).querySelector('.slider-value__input'),
+	const slider_params = {
 		line_width: document.getElementById(el.id).querySelector('.slider-line__hr'),
-		step: document.getElementById(el.id).getAttribute('step')
+    min_val: Number(document.getElementById(el.id).getAttribute('min-value')),
+    max_val: Number(document.getElementById(el.id).getAttribute('max-value')),
+    step: Number(document.getElementById(el.id).getAttribute('step')),
+    value: document.getElementById(el.id).getAttribute('value')
 	}
-
-	let slider_elements = {
+   
+	const slider_elements = {
 		active_line: document.getElementById(el.id).querySelector('.slider-line__active-hr'),
 		circle: document.getElementById(el.id).querySelector('.slider-line__circle'),
-    marks: document.getElementById(el.id).querySelector('.slider-line__markups')
+    marks: document.getElementById(el.id).querySelector('.slider-line__markups'),
+    value_input: document.getElementById(el.id).querySelector('.slider-value__input')
 	}
+
 
 
 	//load params from html
-	slider_params.value.setAttribute('value', slider_params.percent);
-	__moving(slider_elements, Math.round((slider_params.percent * slider_params.line_width.clientWidth) / slider_params.step));
-  
+	
   let position_list = __load_positions(slider_params.line_width.clientWidth, slider_params.step);
+  
+  slider_elements.value_input.setAttribute('value', slider_params.min_val);
+  
+  
+  __moving(slider_elements, 0);
   slider_elements.marks.innerHTML = __create_marks(slider_params.line_width.clientWidth, slider_params.step);
 
-  //end load
+  //end load params
+  
+  
   
 	slider_elements.circle.onmousedown = function(e) {
 
@@ -40,16 +48,20 @@ function __slider(el) {
 			let position_list = __load_positions(slider_params.line_width.clientWidth, slider_params.step, slider_elements.circle.clientWidth);
 
 			let nearest_value = position_list.find(it => Math.abs(it - cursor_position) === Math.min(...position_list.map(it => Math.abs(it - cursor_position))));
-			let slider_value = Math.round((nearest_value / position_list[position_list.length - 1]) * slider_params.step);
-
+      let slider_value = Math.round(nearest_value / position_list[position_list.length - 1] * (slider_params.max_val - slider_params.min_val)) + slider_params.min_val;    
+        
+      //circle mooving
 			__moving(slider_elements, nearest_value);
+        
+      //write marks
       slider_elements.marks.innerHTML = __create_marks(slider_params.line_width.clientWidth, slider_params.step);
-
-			slider_params.value.setAttribute('value', slider_value);
 			
-  		}
+      //set value to input
+      slider_elements.value_input.setAttribute('value',  slider_value);
+      
+ 		  }
 
-  		document.onmouseup = function() {
+    document.onmouseup = function() {
 		    document.onmousemove = null;
 		    slider_elements.circle.onmouseup = null;
 		}
@@ -71,27 +83,24 @@ function __moving(slider_element, value) {
 
 }
 
-
-//convert value to px
+//convert steps to px
 function __load_positions(line_width, step) {
 
-	let values = [];
+	let steps = [];
 
 	for (let i = 0; i <= step; i++) {
-		values[i] = Math.round((line_width * (i)) / step);
+		steps[i] = Math.round((line_width * i) / step);
 	}
   
-	return values;
+  //console.log(steps);
+	return steps;
 }
-
-
 
 //create marks
 function __create_marks(line_width, step) {
 
   let inner_html = "";
-  
-  console.log(line_width);
+
   let margin = ((line_width - step) / step);
   
   let label_types = {
@@ -107,4 +116,13 @@ function __create_marks(line_width, step) {
   }
 
   return inner_html;
+
 }
+
+
+//slide
+function __load_settings(value, line_width) {
+  console.log()
+}
+
+
