@@ -17,12 +17,42 @@
 
     <div class="calculator">
 
-      <div class="slider" id="1" value="5" step="100">
+      <div class="slider" id="1" value="50" min-value="35" max-value="90" step="55">
 
 
         <div class="slider-line">
 
           <div class = "slider-line__title">ЛИНЕЙКА</div>
+
+          <div class = "slider-line__line">
+
+            <div class="slider-line__circle"></div>
+            <hr class="slider-line__active-hr" noshade />
+            <hr class="slider-line__hr" noshade />
+
+          </div>
+
+          <div class="slider-line__markups"></div>
+          
+          
+        </div>
+        
+ 
+        <div class="slider-value">
+
+          <input class="slider-value__input" type="text" />
+
+        </div> 
+        
+      </div>
+      
+      
+      <div class="slider" id="2" value="10" min-value="0" max-value="40" step="30">
+
+
+        <div class="slider-line">
+
+          <div class = "slider-line__title">ЛИНЕЙКА 2</div>
 
           <div class = "slider-line__line">
 
